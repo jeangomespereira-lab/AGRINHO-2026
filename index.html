@@ -2,20 +2,168 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu Primeiro Site</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="description" content="AgroWater - Conscientização sobre o desperdício de água na agricultura e soluções sustentáveis">
+    <title>AgroWater | Água que Sustenta o Agro</title>
+    <!-- CSS externo -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="container">
-        <h1>Olá, Mundo!</h1>
-        <p>Este é o meu primeiro projeto de site hospedado no GitHub.</p>
-        
-        <button id="meuBotao">Clique aqui!</button>
-        <p id="mensagem" class="escondido">Você clicou no botão! Funciona! 🎉</p>
+    <!-- Botão de acessibilidade fixo -->
+    <div class="botao-acessibilidade" id="botaoAcessibilidade" aria-label="Botão de acessibilidade">
+        ♿
     </div>
 
+    <!-- Menu de acessibilidade (inicialmente escondido) -->
+    <div class="menu-acessibilidade" id="menuAcessibilidade">
+        <button id="aumentarFonte" aria-label="Aumentar fonte">A+</button>
+        <button id="diminuirFonte" aria-label="Diminuir fonte">A-</button>
+        <button id="altoContraste" aria-label="Ativar alto contraste">🌓 Alto Contraste</button>
+    </div>
+
+    <!-- Cabeçalho -->
+    <header>
+        <div class="logo">
+            <h1>💧 AgroWater</h1>
+            <p>Água que Sustenta o Agro</p>
+        </div>
+        <nav>
+            <ul class="menu">
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#problema">Problema</a></li>
+                <li><a href="#solucoes">Soluções</a></li>
+                <li><a href="#quiz">Quiz</a></li>
+                <li><a href="#conclusao">Conclusão</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Conteúdo principal -->
+    <main>
+        <!-- Seção Início -->
+        <section id="inicio" class="secao">
+            <h2>Bem-vindo ao AgroWater</h2>
+            <p><strong>Agro forte, futuro sustentável: equilíbrio entre produção e meio ambiente.</strong></p>
+            <p>Nosso objetivo é conscientizar sobre o <strong>desperdício de água na agricultura</strong> e apresentar soluções práticas para uma produção mais sustentável.</p>
+            <img src="https://placehold.co/800x400/2E7D32/white?text=Irrigação+Sustentável" alt="Imagem ilustrativa de irrigação sustentável no campo" class="imagem-destaque">
+        </section>
+
+        <!-- Seção Sobre o tema -->
+        <section id="sobre" class="secao">
+            <h2>Sobre o tema</h2>
+            <p>A água é um recurso essencial para a agricultura. Porém, o uso inadequado e o desperdício comprometem a disponibilidade hídrica para as futuras gerações. O equilíbrio entre produção de alimentos e preservação ambiental é o grande desafio do nosso tempo.</p>
+            <p>O AgroWater nasceu para levar informação e conscientização a agricultores e à comunidade escolar sobre a importância de usar a água de forma mais inteligente e sustentável no campo.</p>
+        </section>
+
+        <!-- Seção Problema ambiental -->
+        <section id="problema" class="secao">
+            <h2>Problema: Desperdício de água na agricultura</h2>
+            <p>A agricultura é responsável por cerca de 70% de toda a água consumida no mundo. No entanto, grande parte dessa água é desperdiçada devido a:</p>
+            <ul>
+                <li>Sistemas de irrigação ineficientes (como irrigação por sulco mal planejada);</li>
+                <li>Vazamentos e falta de manutenção;</li>
+                <li>Falta de tecnologias como gotejamento ou captação de chuva;</li>
+                <li>Desconhecimento sobre o real consumo hídrico das culturas.</li>
+            </ul>
+            <p>Esse desperdício afeta rios, nascentes e o solo, além de aumentar os custos dos produtores.</p>
+            <img src="https://placehold.co/600x300/1565C0/white?text=Desperdício+de+água" alt="Representação de desperdício de água na agricultura" class="imagem-secundaria">
+        </section>
+
+        <!-- Seção Soluções sustentáveis -->
+        <section id="solucoes" class="secao">
+            <h2>Soluções sustentáveis</h2>
+            <p>Existem várias formas de utilizar a água de maneira mais sustentável na agricultura. Confira algumas dicas:</p>
+            <div class="cards-solucoes">
+                <div class="card">
+                    <h3>💧 Irrigação por gotejamento</h3>
+                    <p>Economiza até 60% de água em comparação com métodos tradicionais.</p>
+                </div>
+                <div class="card">
+                    <h3>🌧️ Captação de água da chuva</h3>
+                    <p>Aproveita a água natural para períodos de estiagem.</p>
+                </div>
+                <div class="card">
+                    <h3>📊 Monitoramento do solo</h3>
+                    <p>Sensores evitam irrigação excessiva e desnecessária.</p>
+                </div>
+                <div class="card">
+                    <h3>♻️ Reuso de água</h3>
+                    <p>Tratamento e reaproveitamento da água utilizada na propriedade.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Quiz interativo (funcionalidade JavaScript) -->
+        <section id="quiz" class="secao">
+            <h2>🎯 Teste seus conhecimentos</h2>
+            <p>Responda o quiz abaixo e veja o que você aprendeu sobre uso sustentável da água na agricultura.</p>
+            
+            <div id="quiz-container">
+                <form id="formularioQuiz">
+                    <!-- Pergunta 1 -->
+                    <div class="pergunta">
+                        <p><strong>1.</strong> A agricultura consome aproximadamente quantos por cento da água doce utilizada no mundo?</p>
+                        <label><input type="radio" name="q1" value="a"> a) 30%</label>
+                        <label><input type="radio" name="q1" value="b"> b) 50%</label>
+                        <label><input type="radio" name="q1" value="c"> c) 70%</label>
+                        <label><input type="radio" name="q1" value="d"> d) 90%</label>
+                    </div>
+                    <!-- Pergunta 2 -->
+                    <div class="pergunta">
+                        <p><strong>2.</strong> Qual técnica de irrigação é mais eficiente e economiza mais água?</p>
+                        <label><input type="radio" name="q2" value="a"> a) Irrigação por aspersão</label>
+                        <label><input type="radio" name="q2" value="b"> b) Irrigação por gotejamento</label>
+                        <label><input type="radio" name="q2" value="c"> c) Irrigação por sulco</label>
+                        <label><input type="radio" name="q2" value="d"> d) Irrigação por inundação</label>
+                    </div>
+                    <!-- Pergunta 3 -->
+                    <div class="pergunta">
+                        <p><strong>3.</strong> Uma das causas do desperdício de água na agricultura é:</p>
+                        <label><input type="radio" name="q3" value="a"> a) Uso de sensores de umidade</label>
+                        <label><input type="radio" name="q3" value="b"> b) Captação de água da chuva</label>
+                        <label><input type="radio" name="q3" value="c"> c) Sistemas de irrigação ineficientes</label>
+                        <label><input type="radio" name="q3" value="d"> d) Reuso de água tratada</label>
+                    </div>
+                    <!-- Pergunta 4 -->
+                    <div class="pergunta">
+                        <p><strong>4.</strong> Qual destas ações ajuda a reduzir o desperdício de água no campo?</p>
+                        <label><input type="radio" name="q4" value="a"> a) Aumentar a área irrigada sem planejamento</label>
+                        <label><input type="radio" name="q4" value="b"> b) Monitorar a umidade do solo antes de irrigar</label>
+                        <label><input type="radio" name="q4" value="c"> c) Irrigar sempre no horário mais quente do dia</label>
+                        <label><input type="radio" name="q4" value="d"> d) Usar mangueiras com vazamentos</label>
+                    </div>
+                    <!-- Pergunta 5 -->
+                    <div class="pergunta">
+                        <p><strong>5.</strong> Por que é importante reduzir o desperdício de água na agricultura?</p>
+                        <label><input type="radio" name="q5" value="a"> a) Para aumentar o lucro apenas</label>
+                        <label><input type="radio" name="q5" value="b"> b) Porque a água é infinita</label>
+                        <label><input type="radio" name="q5" value="c"> c) Para preservar rios, nascentes e garantir futuro sustentável</label>
+                        <label><input type="radio" name="q5" value="d"> d) Só para cumprir leis ambientais</label>
+                    </div>
+                    <button type="button" id="btnCorrigirQuiz">Corrigir Quiz</button>
+                </form>
+                <div id="resultadoQuiz"></div>
+            </div>
+        </section>
+
+        <!-- Seção Conclusão -->
+        <section id="conclusao" class="secao">
+            <h2>Conclusão</h2>
+            <p>O equilíbrio entre uma agricultura forte e um futuro sustentável é possível. Pequenas mudanças nos hábitos de uso da água no campo geram grande impacto positivo para o meio ambiente, a sociedade e os próprios agricultores.</p>
+            <p>Com informação, tecnologia e consciência, podemos produzir alimentos sem desperdiçar o recurso mais precioso do planeta. 🌍💙</p>
+        </section>
+    </main>
+
+    <!-- Rodapé -->
+    <footer>
+        <p>© 2026 AgroWater - Projeto desenvolvido para o Concurso Agrinho 2026</p>
+        <p>💧 "Agro forte, futuro sustentável: equilíbrio entre produção e meio ambiente"</p>
+        <p>Imagens ilustrativas | Conteúdo autoral para conscientização ambiental</p>
+    </footer>
+
+    <!-- JavaScript externo -->
     <script src="script.js"></script>
 </body>
 </html>
