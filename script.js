@@ -1,96 +1,373 @@
-// ===== FUNCIONALIDADES DE ACESSIBILIDADE =====
+// =====================================
+// ACESSIBILIDADE
+// =====================================
 
-// Elementos do DOM
-const botaoAcessibilidade = document.getElementById('botaoAcessibilidade');
-const menuAcessibilidade = document.getElementById('menuAcessibilidade');
-const btnAumentar = document.getElementById('aumentarFonte');
-const btnDiminuir = document.getElementById('diminuirFonte');
-const btnContraste = document.getElementById('altoContraste');
+const botaoAcessibilidade =
+document.getElementById("botaoAcessibilidade");
 
-let tamanhoFonteAtual = 16; // tamanho base em px
+const menuAcessibilidade =
+document.getElementById("menuAcessibilidade");
 
-// Abrir/fechar menu de acessibilidade
-botaoAcessibilidade.addEventListener('click', () => {
-    menuAcessibilidade.classList.toggle('aberto');
+const btnAumentar =
+document.getElementById("aumentarFonte");
+
+const btnDiminuir =
+document.getElementById("diminuirFonte");
+
+const btnContraste =
+document.getElementById("altoContraste");
+
+let tamanhoFonte = 16;
+
+// abrir menu
+
+botaoAcessibilidade.addEventListener("click", () => {
+    menuAcessibilidade.classList.toggle("aberto");
 });
 
-// Aumentar fonte (máximo 24px)
-btnAumentar.addEventListener('click', () => {
-    if (tamanhoFonteAtual < 24) {
-        tamanhoFonteAtual += 2;
-        document.body.style.fontSize = tamanhoFonteAtual + 'px';
+// aumentar fonte
+
+btnAumentar.addEventListener("click", () => {
+
+    if(tamanhoFonte < 24){
+
+        tamanhoFonte += 2;
+
+        document.body.style.fontSize =
+        tamanhoFonte + "px";
     }
+
 });
 
-// Diminuir fonte (mínimo 12px)
-btnDiminuir.addEventListener('click', () => {
-    if (tamanhoFonteAtual > 12) {
-        tamanhoFonteAtual -= 2;
-        document.body.style.fontSize = tamanhoFonteAtual + 'px';
+// diminuir fonte
+
+btnDiminuir.addEventListener("click", () => {
+
+    if(tamanhoFonte > 12){
+
+        tamanhoFonte -= 2;
+
+        document.body.style.fontSize =
+        tamanhoFonte + "px";
     }
+
 });
 
-// Alto contraste
-btnContraste.addEventListener('click', () => {
-    document.body.classList.toggle('alto-contraste');
+// alto contraste
+
+btnContraste.addEventListener("click", () => {
+
+    document.body.classList.toggle("alto-contraste");
+
 });
 
-// Fechar menu se clicar fora (opcional)
-document.addEventListener('click', (event) => {
-    if (!botaoAcessibilidade.contains(event.target) && !menuAcessibilidade.contains(event.target)) {
-        menuAcessibilidade.classList.remove('aberto');
-    }
-});
+// =====================================
+// CONTADORES ANIMADOS
+// =====================================
 
-// ===== FUNCIONALIDADE PRINCIPAL: QUIZ SUSTENTÁVEL =====
+const contadores =
+document.querySelectorAll(".contador");
 
-const btnCorrigir = document.getElementById('btnCorrigirQuiz');
-const resultadoDiv = document.getElementById('resultadoQuiz');
+contadores.forEach(contador => {
 
-// Gabarito do quiz (questões 1 a 5)
-const gabarito = {
-    q1: 'c',  // 70%
-    q2: 'b',  // irrigação por gotejamento
-    q3: 'c',  // sistemas de irrigação ineficientes
-    q4: 'b',  // monitorar umidade do solo
-    q5: 'c'   // preservar rios, nascentes e garantir futuro sustentável
-};
+    const atualizar = () => {
 
-// Função para corrigir o quiz
-function corrigirQuiz() {
-    let pontuacao = 0;
-    let respostasUsuario = {
-        q1: document.querySelector('input[name="q1"]:checked'),
-        q2: document.querySelector('input[name="q2"]:checked'),
-        q3: document.querySelector('input[name="q3"]:checked'),
-        q4: document.querySelector('input[name="q4"]:checked'),
-        q5: document.querySelector('input[name="q5"]:checked')
+        const alvo =
+        +contador.getAttribute("data-target");
+
+        const atual =
+        +contador.innerText;
+
+        const incremento =
+        alvo / 100;
+
+        if(atual < alvo){
+
+            contador.innerText =
+            Math.ceil(atual + incremento);
+
+            setTimeout(atualizar,20);
+
+        }else{
+
+            contador.innerText = alvo;
+
+        }
+
     };
 
-    // Verifica cada questão
-    for (let questao in gabarito) {
-        if (respostasUsuario[questao]) {
-            if (respostasUsuario[questao].value === gabarito[questao]) {
-                pontuacao++;
-            }
-        }
-    }
+    atualizar();
 
-    // Exibe o resultado
-    if (pontuacao === 5) {
-        resultadoDiv.innerHTML = `🎉 Excelente! Você acertou ${pontuacao} de 5 questões. Parabéns! Você aprendeu sobre o uso sustentável da água. 🌱💧`;
-        resultadoDiv.style.backgroundColor = '#C8E6C9';
-    } else if (pontuacao >= 3) {
-        resultadoDiv.innerHTML = `📘 Bom trabalho! Você acertou ${pontuacao} de 5 questões. Releia as dicas e tente novamente para gabaritar! 🌍`;
-        resultadoDiv.style.backgroundColor = '#FFF9C4';
-    } else {
-        resultadoDiv.innerHTML = `🌿 Você acertou ${pontuacao} de 5 questões. Que tal revisar as soluções sustentáveis? A água é vida, vamos aprender juntos! 💙`;
-        resultadoDiv.style.backgroundColor = '#FFCDD2';
-    }
+});
+
+// =====================================
+// ANIMAÇÃO AO ROLAR
+// =====================================
+
+const elementosFade =
+document.querySelectorAll(".fade");
+
+function revelarElementos(){
+
+    const alturaTela =
+    window.innerHeight;
+
+    elementosFade.forEach(elemento => {
+
+        const topo =
+        elemento.getBoundingClientRect().top;
+
+        if(topo < alturaTela - 100){
+
+            elemento.classList.add("aparecer");
+
+        }
+
+    });
+
 }
 
-// Evento do botão corrigir quiz
-btnCorrigir.addEventListener('click', corrigirQuiz);
+window.addEventListener(
+"scroll",
+revelarElementos
+);
 
-// Mensagem de boas-vindas no console (para aprendizado)
-console.log('Site AgroWater carregado! Quiz sobre sustentabilidade da água pronto ✅');
+revelarElementos();
+
+// =====================================
+// BOTÃO VOLTAR AO TOPO
+// =====================================
+
+const voltarTopo =
+document.getElementById("voltarTopo");
+
+window.addEventListener("scroll", () => {
+
+    if(window.scrollY > 500){
+
+        voltarTopo.style.display =
+        "block";
+
+    }else{
+
+        voltarTopo.style.display =
+        "none";
+
+    }
+
+});
+
+voltarTopo.addEventListener("click", () => {
+
+    window.scrollTo({
+
+        top:0,
+        behavior:"smooth"
+
+    });
+
+});
+
+// =====================================
+// CALCULADORA DE ECONOMIA
+// =====================================
+
+const btnCalcular =
+document.getElementById(
+"calcularEconomia"
+);
+
+const resultadoEconomia =
+document.getElementById(
+"resultadoEconomia"
+);
+
+btnCalcular.addEventListener("click", () => {
+
+    const litros =
+    Number(
+    document.getElementById("litros").value
+    );
+
+    if(litros <= 0){
+
+        resultadoEconomia.innerHTML =
+        "Digite um valor válido.";
+
+        return;
+    }
+
+    const economia =
+    litros * 0.60;
+
+    resultadoEconomia.innerHTML =
+
+    `💧 Utilizando irrigação por gotejamento,
+    você poderia economizar aproximadamente
+    <strong>${economia.toFixed(0)} litros</strong>
+    de água.`;
+
+});
+
+// =====================================
+// QUIZ
+// =====================================
+
+const progresso =
+document.getElementById("progresso");
+
+const formularioQuiz =
+document.getElementById(
+"formularioQuiz"
+);
+
+if(formularioQuiz){
+
+    const radios =
+    formularioQuiz.querySelectorAll(
+    "input[type='radio']"
+    );
+
+    radios.forEach(radio => {
+
+        radio.addEventListener(
+        "change",
+        atualizarProgresso
+        );
+
+    });
+
+}
+
+function atualizarProgresso(){
+
+    const respondidas =
+    document.querySelectorAll(
+    "input[type='radio']:checked"
+    ).length;
+
+    const total = 5;
+
+    const porcentagem =
+    (respondidas / total) * 100;
+
+    progresso.style.width =
+    porcentagem + "%";
+
+}
+
+// =====================================
+// CORREÇÃO DO QUIZ
+// =====================================
+
+const btnCorrigir =
+document.getElementById(
+"btnCorrigirQuiz"
+);
+
+const resultadoQuiz =
+document.getElementById(
+"resultadoQuiz"
+);
+
+const gabarito = {
+
+    q1:"c",
+    q2:"b",
+    q3:"c",
+    q4:"b",
+    q5:"c"
+
+};
+
+if(btnCorrigir){
+
+    btnCorrigir.addEventListener(
+    "click",
+    corrigirQuiz
+    );
+
+}
+
+function corrigirQuiz(){
+
+    let pontos = 0;
+
+    for(let questao in gabarito){
+
+        const resposta =
+        document.querySelector(
+        `input[name="${questao}"]:checked`
+        );
+
+        if(
+            resposta &&
+            resposta.value ===
+            gabarito[questao]
+        ){
+
+            pontos++;
+
+        }
+
+    }
+
+    if(pontos === 5){
+
+        resultadoQuiz.innerHTML =
+
+        `
+        🥇 <strong>Mestre da Sustentabilidade</strong><br>
+        Você acertou ${pontos}/5 questões!
+        `;
+
+    }
+
+    else if(pontos >= 3){
+
+        resultadoQuiz.innerHTML =
+
+        `
+        🥈 <strong>Guardião da Água</strong><br>
+        Você acertou ${pontos}/5 questões!
+        `;
+
+    }
+
+    else{
+
+        resultadoQuiz.innerHTML =
+
+        `
+        🥉 <strong>Aprendiz da Sustentabilidade</strong><br>
+        Você acertou ${pontos}/5 questões!
+        `;
+
+    }
+
+}
+
+// =====================================
+// FECHAR MENU AO CLICAR FORA
+// =====================================
+
+document.addEventListener("click", (e) => {
+
+    if(
+        !botaoAcessibilidade.contains(e.target)
+        &&
+        !menuAcessibilidade.contains(e.target)
+    ){
+
+        menuAcessibilidade.classList.remove(
+        "aberto"
+        );
+
+    }
+
+});
+
+console.log(
+"🌱 AgroWater carregado com sucesso!"
+);
+  
